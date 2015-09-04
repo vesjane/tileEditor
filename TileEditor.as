@@ -8,6 +8,9 @@
 	import flash.net.FileReference;
 	import flash.net.FileFilter;	
 	import flash.events.MouseEvent;
+	import flash.display.Loader;
+	import flash.utils.ByteArray;
+	import flash.text.TextField;
 	
 	
 	public class TileEditor extends MovieClip {
@@ -21,6 +24,19 @@
 		private var _tiles:MovieClip = new MovieClip();
 		
 		public var newTileMap:Array;
+		public var test1:Array = [
+									[150,150,150,150,150,150,150,150,150,150],
+									[100,100,100,100,100,100,100,100,100,100],
+									[50,50,50,50,50,50,50,50,50,50],
+									[10,10,10,10,10,10,10,10,10,10],
+									[0,0,0,0,0,0,0,0,0,0],
+									[1,1,1,1,1,1,1,1,1,1],
+									[-150,-150,150,150,150,150,150,-150,150,150],
+									[100,100,-100,100,100,100,100,-100,100,100],
+									[50,50,-50,50,50,50,50,50,-50,-50],
+									[10,-10,-10,-10,-10,-10,-10,-10,10,-10]
+									];
+		
 		public var tileMap:Array = [
 									[1,1,1,1,1,1,1,1,1,1],
 									[1,1,1,1,1,1,1,1,1,1],
@@ -49,8 +65,9 @@
 		private function init(e:Event = null):void
 		{
 			loadData.addEventListener(MouseEvent.CLICK,selectHandler);
+			data1.addEventListener(MouseEvent.CLICK,changeTileHeight);
 			buildMap(tileMap);	
-			changeTileHeight();
+			
 			
 		}
 		 
@@ -61,63 +78,77 @@
 			  
 			  _file.browse([txtFileTypes]);
 			  _file.addEventListener(Event.SELECT, selectFile);
+			  _file.addEventListener(Event.COMPLETE, loadFile);
 			
 		}
 		
 		private function selectFile(e:Event):void
-		{
-			_file.addEventListener(Event.COMPLETE, loadFile);
+		{			
 			_file.load();
 		}
 		
+		
+		
+		private var loader:Loader;
+		
 		private function loadFile(e:Event):void
-		{
-			newTileMap = new Array();
-			newTileMap[0] = new Array();
+		{			
 			_file.removeEventListener(Event.COMPLETE, loadFile);
 			_file.removeEventListener(Event.SELECT, selectFile);
 			
-			while (_file.data.bytesAvailable > 0)
+			var txtField:TextField = new TextField();
+			var arr:Array = new Array();
+			var counter:int = 0;
+			
+			txtField.text = _file.data.readMultiByte( _file.data.bytesAvailable, "utf-8" );						
+			arr = txtField.text.split(" ");
+			
+			clearHeight();
+			for(var i = 0; i < 10; ++i)
 			{
-				var i:int = 0;
-				var j:int = 0;
-				
-				if(j == 9)
+				for(var k = 0; k < 10; ++k)
 				{
-					i++;
-					j = 0;
-					newTileMap[i] = new Array();
-				}	
-				newTileMap[i][j] = _file.data.readInt();				
-				
-				
-			}
-			for(var c = 0; c < _map[0].length; ++i){				
-				for(var k = 0; k < _map.length; ++k)
-				{
-					(_map[i][j] as Tiles).tileHeight = newTileMap[c][k];				
-					(_map[i][j] as Tiles).redraw();
+					getTile(i,k).tileHeight = int(arr[counter]);
+					counter++;
 				}
-			}
-			
-			
+				
+			}		
+					
+		}
+		
+		public function getTile(i:int,j:int):Tiles
+		{
+			return _tiles.getChildByName(i+"-"+j)as Tiles;
 		}
 		
 		
 
-		
-		
-		public function changeTileHeight():void
+		public function clearHeight(e:Event = null):void
 		{
-			/*var tileHeight:Number = -50;
 			
-			(_tiles.getChildByName("0-0") as Tiles).tileHeight = tileHeight;
-			(_tiles.getChildByName("2-2") as Tiles).tileHeight = 20;
-			(_tiles.getChildByName("5-1") as Tiles).tileHeight = -tileHeight;
-			(_tiles.getChildByName("9-9") as Tiles).tileHeight = 100 -tileHeight;
-			(_tiles.getChildByName("9-1") as Tiles).tileHeight = -20;
-			(_tiles.getChildByName("8-1") as Tiles).tileHeight = -30;*/
-			
+			for(var i = 0; i < 10; ++i)
+			{
+				for(var k = 0; k < 10; ++k)
+				{
+					getTile(i,k).tileHeight = 0;					
+				}
+				
+			}		
+		}
+		
+		
+		
+		public function changeTileHeight(e:Event):void
+		{
+			clearHeight();			
+			for(var i = 0; i < 10; ++i)
+			{
+				for(var k = 0; k < 10; ++k)
+				{
+					getTile(i,k).tileHeight = test1[i][k];					
+				}
+				
+			}		
 		}
 		
 

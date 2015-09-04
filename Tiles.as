@@ -43,9 +43,10 @@
 		
 		
 		public function redraw():void
-		{			
-							
+		{	
+					
 			this.y = this.y - tileHeight;
+			tileRibs.graphics.clear();
 			if(tileHeight > 0 )
 			{
 				tileRibs.graphics.beginFill(tileColor,1);
