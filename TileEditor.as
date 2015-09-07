@@ -23,6 +23,7 @@
 		private var _map:Array;
 		private var _tiles:MovieClip = new MovieClip();
 		
+		public var defaultTileMap:Array;
 		public var newTileMap:Array;
 		public var test1:Array = [
 									[150,150,150,150,150,150,150,150,150,150],
@@ -33,8 +34,9 @@
 									[1,1,1,1,1,1,1,1,1,1],
 									[-150,-150,150,150,150,150,150,-150,150,150],
 									[100,100,-100,100,100,100,100,-100,100,100],
-									[50,50,-50,50,50,50,50,50,-50,-50],
-									[10,-10,-10,-10,-10,-10,-10,-10,10,-10]
+									[50,-50,-50,-50,-50,-50,-50,-50,-50,-50],
+									[10,10,10,10,10,10,10,10,10,10]
+									
 									];
 		
 		public var tileMap:Array = [
@@ -66,6 +68,7 @@
 		{
 			loadData.addEventListener(MouseEvent.CLICK,selectHandler);
 			data1.addEventListener(MouseEvent.CLICK,changeTileHeight);
+			clearBtn.addEventListener(MouseEvent.CLICK,clearHeight);
 			buildMap(tileMap);	
 			
 			
@@ -130,6 +133,8 @@
 			{
 				for(var k = 0; k < 10; ++k)
 				{
+					getTile(i,k).y = defaultTileMap[i][k].y;
+					getTile(i,k).x = defaultTileMap[i][k].x;
 					getTile(i,k).tileHeight = 0;					
 				}
 				
@@ -160,9 +165,10 @@
 			}			
 			_tiles.name = "tileHolder";
 			_map = new Array();
-			
+			defaultTileMap= new Array();
 			for(var i = 0; i < array[0].length; ++i){
 				_map[i] = new Array();
+				defaultTileMap[i] = new Array();
 				for(var k = 0; k < array.length; ++k)
 				{
 					
@@ -170,7 +176,8 @@
 					_tiles.addChild(_map[i][k]);
 								
 					_map[i][k].x = (k-i)*TILE_WIDTH/2;
-					_map[i][k].y = (i+k)*TILE_HEIGHT/2;				
+					_map[i][k].y = (i+k)*TILE_HEIGHT/2;
+					defaultTileMap[i][k] = new Point((k-i)*TILE_WIDTH/2,(i+k)*TILE_HEIGHT/2);
 					_map[i][k].name = i + "-" + k;
 					
 				}

@@ -6,13 +6,16 @@
   <classTemplate>file:///C|/Users/-/AppData/Local/Adobe/Flash CS5/en_US/Configuration/ActionScript 3.0/Templates/standardClass_as3.as</classTemplate>
   <classPath>.</classPath>
   <defaultApp/>
-  <rootURI>file:///D|/TileEditor/</rootURI>
+  <rootURI>file:///D|/my%20project/TestTileEditor/tileEditor/</rootURI>
   <flexSDK/>
   <sources editable="false"/>
   <libraries editable="false"/>
   <externalLibraries editable="false"/>
   <compileList editable="false"/>
   <recentFiles editable="false">
+    <uri label="Tiles.as">file:///D|/my%20project/TestTileEditor/tileEditor/Tiles.as</uri>
+    <uri label="TileEditor.fla">file:///D|/my%20project/TestTileEditor/tileEditor/TileEditor.fla</uri>
+    <uri label="TileEditor.as">file:///D|/my%20project/TestTileEditor/tileEditor/TileEditor.as</uri>
     <uri label="Tiles.as">file:///D|/christmasGame/game/TileEditor/Tiles.as</uri>
     <uri label="TileEditor.as">file:///D|/christmasGame/game/TileEditor/TileEditor.as</uri>
     <uri label="Box.as">file:///D|/christmasGame/game/TileEditor/Alternativa3D-master/src/alternativa/engine3d/primitives/Box.as</uri>

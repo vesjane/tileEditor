@@ -33,7 +33,7 @@
 		
 			this.width = 48;
 			this.height = 24;
-			tileRibs = new Sprite;
+			tileRibs = new Sprite();
 			this.addChild(tileRibs);
 			redraw();
 
@@ -71,7 +71,9 @@
 				tileRibs.graphics.lineTo(this.width,tileHeight + H/2);
 				tileRibs.graphics.endFill();
 				
-				// переднее ребро
+				
+				
+				// заднее ребро
 				tileRibs.graphics.beginFill(tileColor,1);
 				tileRibs.graphics.lineStyle(1,0,1);		
 				tileRibs.graphics.moveTo(this.width/2,(tileHeight + H));	
@@ -81,7 +83,7 @@
 				tileRibs.graphics.lineTo(this.width/2,(tileHeight + H));
 				tileRibs.graphics.endFill();
 				
-				// заднее ребро
+				// переднее ребро
 				tileRibs.graphics.beginFill(tileColor,1);
 				tileRibs.graphics.lineStyle(1,0,1);		
 				tileRibs.graphics.moveTo(this.width/2,(tileHeight + H));	
@@ -95,10 +97,10 @@
 				tileRibs.graphics.beginFill(tileColor,1);
 				tileRibs.graphics.lineStyle(1,0,1);		
 				tileRibs.graphics.moveTo(this.width/2,H);	
-				tileRibs.graphics.lineTo(this.width,H/2);
-				tileRibs.graphics.lineTo(this.width/2, 0);
+				tileRibs.graphics.lineTo(this.width-2,H/2);
+				tileRibs.graphics.lineTo(this.width/2,0);
 				tileRibs.graphics.lineTo(0, H/2);
-				tileRibs.graphics.lineTo(this.width/2,(H));
+				tileRibs.graphics.lineTo(this.width/2,H);
 				tileRibs.graphics.endFill();
 				
 			} else if(tileHeight < 0 )
@@ -113,7 +115,7 @@
 				tileRibs.graphics.lineTo(this.width,tileHeight + H/2);
 				tileRibs.graphics.endFill();
 				
-				//
+				//боковая правая стенка
 				tileRibs.graphics.beginFill(tileColor,1);
 				tileRibs.graphics.lineStyle(1,0,1);
 				tileRibs.graphics.moveTo(this.width/2,tileHeight + H);		
@@ -121,9 +123,7 @@
 				tileRibs.graphics.lineTo(this.width,H/2);
 				tileRibs.graphics.lineTo(this.width,tileHeight + H/2);
 				tileRibs.graphics.lineTo(this.width/2,tileHeight + H);
-				tileRibs.graphics.endFill();
-				
-				
+				tileRibs.graphics.endFill();				
 				
 				//боковая левая стенка
 				
@@ -145,15 +145,12 @@
 				tileRibs.graphics.lineTo(0,H/2);
 				tileRibs.graphics.lineTo(this.width/2,H);
 				tileRibs.graphics.lineTo(this.width/2,tileHeight + H);
-				tileRibs.graphics.endFill();
-				
-				
+				tileRibs.graphics.endFill();			
 				
 			}
 			
 			
-			
-			
+						
 			
 			
 		}
